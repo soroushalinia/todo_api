@@ -1,12 +1,10 @@
 from fastapi import FastAPI
-import models
 from database import engine
+import models
+from routes import todo_route
 
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-
-@app.get("/")
-def index():
-    return "TodoAPI"
+app.include_router(todo_route.router)
