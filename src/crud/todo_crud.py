@@ -5,8 +5,8 @@ import models
 import schemas
 
 
-def get_all_todos(db: Session):
-    return db.query(models.Todo).all()
+def get_all_todos(db: Session, user_id: int):
+    return db.query(models.Todo).filter(models.Todo.user_id == user_id).all()
 
 
 def get_todo(db: Session, id: int):
@@ -15,7 +15,8 @@ def get_todo(db: Session, id: int):
 
 def create_todo(db: Session, request: schemas.TodoCreate):
     todo = models.Todo(task_name=request.task_name,
-                       task_date=datetime.utcnow())
+                       task_date=datetime.utcnow(),
+                       user_id=request.user_id)
     db.add(todo)
     db.commit()
     db.refresh(todo)

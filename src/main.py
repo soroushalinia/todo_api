@@ -1,12 +1,16 @@
 from fastapi import FastAPI
 from database import engine
 import models
-from routes import todo_route
+from routes import todo_route, user_route
 
 tags_metadata = [
     {
         "name": "Todo",
         "description": "CRUD pperations for tasks.",
+    },
+    {
+        "name": "User",
+        "description": "User related routes."
     }
 ]
 
@@ -19,3 +23,4 @@ app = FastAPI(openapi_tags=tags_metadata,
               })
 
 app.include_router(todo_route.router)
+app.include_router(user_route.router)
