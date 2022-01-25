@@ -21,4 +21,4 @@ uvicorn main:app
 
 # License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT](https://mit-license.org/)
