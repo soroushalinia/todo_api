@@ -1,5 +1,4 @@
 from datetime import datetime
-import email
 from pydantic import BaseModel
 from typing import List
 
@@ -9,7 +8,7 @@ class TodoBase(BaseModel):
 
 
 class TodoCreate(TodoBase):
-    user_id: int
+    pass
 
 
 class TodoUpdate(TodoBase):
@@ -40,3 +39,8 @@ class User(UserBase):
 
     class Config:
         orm_mode = True
+
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
